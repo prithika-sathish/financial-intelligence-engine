@@ -1,0 +1,14 @@
+entity_id,entity_name,entity_type,news_id
+COMPANY_COMP_0,COMP,Company,NEWS-001
+COMPANY_ALPHA_1,ALPHA,Company,NEWS-001
+COMPANY_SUP_2,SUP,Company,NEWS-001
+COMPANY_STEEL_3,STEEL,Company,NEWS-001
+COMPANY_COMP_0,COMP,Company,NEWS-002
+COMPANY_BETA_1,BETA,Company,NEWS-002
+COMPANY_The_2,The,Company,NEWS-002
+SECTOR_Technology,Technology,Sector,NEWS-002
+COMPANY_Logistics_0,Logistics,Company,NEWS-003
+COMPANY_COMP_1,COMP,Company,NEWS-003
+COMPANY_GAMMA_2,GAMMA,Company,NEWS-003
+SECTOR_Financials,Financials,Sector,NEWS-003
+SECTOR_Industrials,Industrials,Sector,NEWS-003

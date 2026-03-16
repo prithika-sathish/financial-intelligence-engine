@@ -1,0 +1,23 @@
+[
+  {
+    "company_id": "COMP-ALPHA",
+    "base_risk": 0.6087500000000001,
+    "propagated_risk": 0.6087500000000001,
+    "network_exposure_score": 0.0,
+    "systemic_importance_score": 0.04186061450397812
+  },
+  {
+    "company_id": "COMP-BETA",
+    "base_risk": 0.23792578913805934,
+    "propagated_risk": 0.42726113593121406,
+    "network_exposure_score": 0.22083710043328653,
+    "systemic_importance_score": 0.34207320002827446
+  },
+  {
+    "company_id": "COMP-GAMMA",
+    "base_risk": 0.4541757891380593,
+    "propagated_risk": 0.5740787571679545,
+    "network_exposure_score": 0.15140472167002705,
+    "systemic_importance_score": 0.34207320002827446
+  }
+]
