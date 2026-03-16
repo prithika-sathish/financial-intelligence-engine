@@ -1,0 +1,26 @@
+[
+  {
+    "news_id": "NEWS-001",
+    "company_id": "COMP-ALPHA",
+    "source": "Reuters",
+    "published_at": "2026-03-12T05:00:00Z",
+    "headline": "COMP ALPHA faces supply chain disruption after supplier fraud lawsuit",
+    "body": "COMP ALPHA disclosed severe supply chain delays. SUP STEEL is linked to a fraud lawsuit and default risk."
+  },
+  {
+    "news_id": "NEWS-002",
+    "company_id": "COMP-BETA",
+    "source": "Bloomberg",
+    "published_at": "2026-03-12T12:30:00Z",
+    "headline": "COMP BETA announces semiconductor acquisition",
+    "body": "The merger and acquisition is expected to improve long-term margins in the technology sector."
+  },
+  {
+    "news_id": "NEWS-003",
+    "company_id": "COMP-GAMMA",
+    "source": "WSJ",
+    "published_at": "2026-03-13T06:00:00Z",
+    "headline": "Logistics bottlenecks pressure COMP GAMMA suppliers",
+    "body": "A new bankruptcy filing in a regional logistics network may affect supplier payments and delivery schedules."
+  }
+]

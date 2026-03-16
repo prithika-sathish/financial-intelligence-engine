@@ -1,0 +1,4 @@
+company_id,risk_trend,risk_velocity,risk_acceleration,risk_history
+COMP-ALPHA,stable,0.0,0.0,[0.825368]
+COMP-BETA,stable,0.0,0.0,[0.144527]
+COMP-GAMMA,stable,0.0,0.0,[0.382781]

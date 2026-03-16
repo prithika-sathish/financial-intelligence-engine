@@ -1,0 +1,31 @@
+[
+  {
+    "company_id": "COMP-ALPHA",
+    "risk_score": 0.6087500000000001,
+    "risk_trend": "stable",
+    "risk_velocity": 0.0,
+    "top_risk_drivers": [
+      "anomaly_rate_7d",
+      "event_impact_score",
+      "negative_sentiment_trend"
+    ]
+  },
+  {
+    "company_id": "COMP-BETA",
+    "risk_score": 0.23792578913805934,
+    "risk_trend": "stable",
+    "risk_velocity": 0.0,
+    "top_risk_drivers": [
+      "anomaly_rate_7d"
+    ]
+  },
+  {
+    "company_id": "COMP-GAMMA",
+    "risk_score": 0.4541757891380593,
+    "risk_trend": "stable",
+    "risk_velocity": 0.0,
+    "top_risk_drivers": [
+      "negative_sentiment_trend"
+    ]
+  }
+]
