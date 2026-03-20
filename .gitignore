@@ -5,3 +5,5 @@ __pycache__/
 *.pyo
 *.pyd
 .streamlit/
+sample_data/sample_transactions.json
+sample_data/sample_news.json
