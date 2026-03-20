@@ -12,6 +12,7 @@ from configs.logging_config import configure_logging
 from data_ingestion.loader import load_news, load_transactions
 from data_ingestion.schemas import IngestionResponse
 from graph_engine.graph_builder import build_financial_graph
+from graph_engine.neo4j_client import is_neo4j_available
 from ml_models.dependency_propagation import propagate_dependency_risk
 from ml_models.feature_extractor import build_graph_features
 from ml_models.risk_model import predict_risk
@@ -22,6 +23,19 @@ from transaction_analysis.anomaly_detector import detect_transaction_anomalies
 app = FastAPI(title="Fin-IQ Financial Intelligence Engine", version="0.1.0")
 configure_logging()
 LOGGER = logging.getLogger(__name__)
+
+
+def _normalize_series(values: pd.Series) -> pd.Series:
+    x = pd.to_numeric(values, errors="coerce").fillna(0.0).astype(float).values
+    return pd.Series((x - x.min()) / (x.max() - x.min() + 1e-8), index=values.index)
+
+
+def _validate_risk_distribution(predictions_df: pd.DataFrame) -> None:
+    try:
+        assert float(predictions_df["risk_score"].std()) > 0.05
+        assert float(predictions_df["propagated_risk"].std()) > 0.05
+    except AssertionError:
+        LOGGER.warning("Risk collapse detected")
 
 _STATE: dict[str, Any] = {
     "transactions_df": pd.DataFrame(),
@@ -78,13 +92,18 @@ def run_graph_builder(req: GraphBuildRequest):
 
     entities_df, events_df, sentiment_df = analyze_news_dataframe(news_df)
     anomaly_scores_df = detect_transaction_anomalies(tx_df)
-    tx_graph_df = tx_df.merge(anomaly_scores_df, on="transaction_id", how="left")
-
-    graph_summary = build_financial_graph(
-        transactions_df=tx_graph_df,
-        entities_df=entities_df,
-        events_df=events_df,
-    )
+    
+    # Check Neo4j connectivity BEFORE attempting writes
+    if not is_neo4j_available():
+        LOGGER.info("Graph builder skipped: Neo4j unavailable")
+        graph_summary = {"transactions": 0, "events": 0, "entities": 0, "dry_run": True}
+    else:
+        tx_graph_df = tx_df.merge(anomaly_scores_df, on="transaction_id", how="left")
+        graph_summary = build_financial_graph(
+            transactions_df=tx_graph_df,
+            entities_df=entities_df,
+            events_df=events_df,
+        )
 
     _STATE["anomaly_scores_df"] = anomaly_scores_df
     _STATE["entities_df"] = entities_df
@@ -125,7 +144,7 @@ def run_ml_analysis():
         trend_df,
     )
     predictions_df = predict_risk(features_df)
-    network_risk_df, dependency_edges_df = propagate_dependency_risk(predictions_df, tx_df, alpha=0.3, max_iter=8)
+    network_risk_df, dependency_edges_df = propagate_dependency_risk(predictions_df, tx_df, alpha=0.4, beta=0.3, max_iter=3)
     predictions_df = predictions_df.merge(
         network_risk_df[["company_id", "propagated_risk", "network_exposure_score", "systemic_importance_score"]],
         on="company_id",
@@ -136,27 +155,45 @@ def run_ml_analysis():
         predictions_df.get("propagated_risk_net", predictions_df.get("propagated_risk", predictions_df["risk_score"])),
         errors="coerce",
     ).fillna(predictions_df["risk_score"])
+
+    predictions_df["risk_score"] = _normalize_series(predictions_df["risk_score"]).clip(0.0, 1.0)
+    predictions_df["propagated_risk"] = _normalize_series(predictions_df["propagated_risk"]).clip(0.0, 1.0)
+
+    low_thr = float(predictions_df["propagated_risk"].quantile(0.33))
+    high_thr = float(predictions_df["propagated_risk"].quantile(0.66))
+
+    def _bucket_risk(x: float) -> str:
+        if x < low_thr:
+            return "low"
+        if x < high_thr:
+            return "medium"
+        return "high"
+
     predictions_df["systemic_importance_score"] = pd.to_numeric(
         predictions_df.get("systemic_importance_score", 0.0), errors="coerce"
     ).fillna(0.0)
-    predictions_df["systemic_risk_level"] = pd.cut(
-        predictions_df["propagated_risk"],
-        bins=[-0.001, 0.40, 0.75, 1.0],
-        labels=["low", "medium", "high"],
-    ).astype(str)
+    predictions_df["systemic_risk_level"] = predictions_df["propagated_risk"].apply(_bucket_risk)
     predictions_df["risk_level"] = predictions_df["systemic_risk_level"]
+
+    _validate_risk_distribution(predictions_df)
     if "propagated_risk_net" in predictions_df.columns:
         predictions_df = predictions_df.drop(columns=["propagated_risk_net"])
 
     tx_graph_df = tx_df.merge(anomaly_df, on="transaction_id", how="left")
-    _STATE["graph_summary"] = build_financial_graph(
-        transactions_df=tx_graph_df,
-        entities_df=entities_df,
-        events_df=events_df,
-        risk_trends_df=trend_df,
-        risk_predictions_df=predictions_df,
-        dependency_edges_df=dependency_edges_df,
-    )
+    
+    # Check Neo4j connectivity BEFORE attempting writes
+    if not is_neo4j_available():
+        LOGGER.info("Graph construction skipped: Neo4j unavailable")
+        _STATE["graph_summary"] = {"transactions": 0, "events": 0, "entities": 0, "dry_run": True}
+    else:
+        _STATE["graph_summary"] = build_financial_graph(
+            transactions_df=tx_graph_df,
+            entities_df=entities_df,
+            events_df=events_df,
+            risk_trends_df=trend_df,
+            risk_predictions_df=predictions_df,
+            dependency_edges_df=dependency_edges_df,
+        )
 
     _STATE["temporal_df"] = temporal_df
     _STATE["trend_df"] = trend_df

@@ -4,9 +4,15 @@ import logging
 from typing import Any
 
 import networkx as nx
+import numpy as np
 import pandas as pd
 
 LOGGER = logging.getLogger(__name__)
+
+
+def _normalize_series(values: pd.Series) -> pd.Series:
+    x = pd.to_numeric(values, errors="coerce").fillna(0.0).astype(float).values
+    return pd.Series((x - x.min()) / (x.max() - x.min() + 1e-8), index=values.index)
 
 
 def _company_dependency_edges(transactions_df: pd.DataFrame) -> pd.DataFrame:
@@ -122,14 +128,17 @@ def compute_network_vulnerability_features(transactions_df: pd.DataFrame) -> pd.
             }
         )
 
-    return pd.DataFrame(rows)
+    out = pd.DataFrame(rows)
+    out["network_exposure_score"] = _normalize_series(out["network_exposure_score"]).clip(0.0, 1.0)
+    return out
 
 
 def propagate_dependency_risk(
     base_risk_df: pd.DataFrame,
     transactions_df: pd.DataFrame,
-    alpha: float = 0.3,
-    max_iter: int = 8,
+    alpha: float = 0.4,
+    beta: float = 0.3,
+    max_iter: int = 3,
     tol: float = 1e-5,
 ) -> tuple[pd.DataFrame, pd.DataFrame]:
     edges_df = _company_dependency_edges(transactions_df)
@@ -162,17 +171,28 @@ def propagate_dependency_risk(
         if src in companies and dst in companies:
             graph.add_edge(src, dst, weight=float(row["weight"]))
 
-    risk_prev = {row["company_id"]: float(row["risk_score"]) for row in base.to_dict(orient="records")}
+    alpha = float(np.clip(alpha, 0.3, 0.5))
+    beta = float(np.clip(beta, 0.0, 1.0))
+    max_iter = int(max(1, min(max_iter, 3)))
+
+    base_map = {row["company_id"]: float(row["risk_score"]) for row in base.to_dict(orient="records")}
+    risk_prev = base_map.copy()
 
     for _ in range(max_iter):
         risk_next = risk_prev.copy()
         max_delta = 0.0
         for node in companies:
+            predecessors = list(graph.predecessors(node))
             influence = 0.0
-            for pred in graph.predecessors(node):
+            for pred in predecessors:
                 w = float(graph[pred][node].get("weight", 0.0))
                 influence += risk_prev.get(pred, 0.0) * w
-            updated = min(max(risk_prev.get(node, 0.0) + alpha * influence, 0.0), 1.0)
+
+            # Normalize incoming influence and apply decay before mixing with base risk.
+            influence = alpha * (influence / (len(predecessors) + 1e-6))
+            base_risk = base_map.get(node, 0.0)
+            updated = ((1.0 - beta) * base_risk) + (beta * influence)
+            updated = float(np.clip(updated, 0.0, 1.0))
             max_delta = max(max_delta, abs(updated - risk_prev.get(node, 0.0)))
             risk_next[node] = updated
         risk_prev = risk_next
@@ -183,8 +203,9 @@ def propagate_dependency_risk(
 
     out_rows: list[dict[str, Any]] = []
     for node in companies:
-        base_risk = float(base.loc[base["company_id"] == node, "risk_score"].iloc[0])
-        propagated = float(risk_prev.get(node, base_risk))
+        base_risk = float(base_map.get(node, 0.0))
+        propagated_raw = float(risk_prev.get(node, base_risk))
+        propagated = float(np.clip((0.6 * propagated_raw) + (0.4 * base_risk), 0.0, 1.0))
         in_w = sum(float(data.get("weight", 0.0)) for _, _, data in graph.in_edges(node, data=True))
         out_w = sum(float(data.get("weight", 0.0)) for _, _, data in graph.out_edges(node, data=True))
         neighbors = set(graph.predecessors(node)).union(set(graph.successors(node)))
@@ -222,5 +243,8 @@ def propagate_dependency_risk(
         )
 
     result_df = pd.DataFrame(out_rows)
+    if not result_df.empty and "network_exposure_score" in result_df.columns:
+        result_df["network_exposure_score"] = _normalize_series(result_df["network_exposure_score"]).clip(0.0, 1.0)
+
     LOGGER.info("Dependency propagation complete for %s companies", len(result_df))
     return result_df, edges_df

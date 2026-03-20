@@ -1,0 +1,203 @@
+2026-03-20 13:20:10,856 | INFO | news_analysis.finbert_analyzer | News analysis complete: 1 entity records, 3 event records
+2026-03-20 13:20:10,870 | INFO | api.main | Ingesting transactions and news
+2026-03-20 13:20:10,930 | INFO | httpx | HTTP Request: POST http://testserver/ingest_transactions "HTTP/1.1 200 OK"
+2026-03-20 13:20:10,936 | INFO | api.main | Running graph builder stage
+2026-03-20 13:20:11,062 | INFO | news_analysis.finbert_analyzer | News analysis complete: 2 entity records, 2 event records
+2026-03-20 13:20:11,980 | INFO | httpx | HTTP Request: POST http://testserver/run_graph_builder "HTTP/1.1 200 OK"
+2026-03-20 13:20:11,988 | INFO | api.main | Running graph feature extraction and ML risk stage
+2026-03-20 13:20:12,121 | INFO | news_analysis.finbert_analyzer | News analysis complete: 2 entity records, 2 event records
+2026-03-20 13:20:12,257 | INFO | ml_models.temporal_analyzer | Temporal analysis complete for 1 companies
+2026-03-20 13:20:12,324 | INFO | ml_models.feature_extractor | Graph feature extraction complete for 1 companies
+2026-03-20 13:20:12,338 | INFO | ml_models.risk_model | Loading risk model from C:\Users\mails\OneDrive\Desktop\Fin-IQ\financial_intelligence_engine\models\risk_random_forest.joblib
+2026-03-20 13:20:12,592 | INFO | ml_models.dependency_propagation | Dependency propagation complete for 1 companies
+2026-03-20 13:20:12,672 | INFO | httpx | HTTP Request: POST http://testserver/run_ml_analysis "HTTP/1.1 200 OK"
+2026-03-20 13:20:12,680 | INFO | api.main | Running agent reasoning
+2026-03-20 13:20:12,689 | INFO | httpx | HTTP Request: POST http://testserver/query_agent "HTTP/1.1 200 OK"
+2026-03-20 13:20:12,700 | INFO | httpx | HTTP Request: GET http://testserver/get_alerts "HTTP/1.1 200 OK"
+2026-03-20 13:22:40,119 | INFO | news_analysis.finbert_analyzer | News analysis complete: 1 entity records, 3 event records
+2026-03-20 13:22:40,134 | INFO | api.main | Ingesting transactions and news
+2026-03-20 13:22:40,201 | INFO | httpx | HTTP Request: POST http://testserver/ingest_transactions "HTTP/1.1 200 OK"
+2026-03-20 13:22:40,210 | INFO | api.main | Running graph builder stage
+2026-03-20 13:22:40,367 | INFO | news_analysis.finbert_analyzer | News analysis complete: 2 entity records, 2 event records
+2026-03-20 13:22:41,245 | INFO | httpx | HTTP Request: POST http://testserver/run_graph_builder "HTTP/1.1 200 OK"
+2026-03-20 13:22:41,253 | INFO | api.main | Running graph feature extraction and ML risk stage
+2026-03-20 13:22:41,438 | INFO | news_analysis.finbert_analyzer | News analysis complete: 2 entity records, 2 event records
+2026-03-20 13:22:41,554 | INFO | ml_models.temporal_analyzer | Temporal analysis complete for 1 companies
+2026-03-20 13:22:41,634 | INFO | ml_models.feature_extractor | Graph feature extraction complete for 1 companies
+2026-03-20 13:22:41,651 | INFO | ml_models.risk_model | Loading risk model from C:\Users\mails\OneDrive\Desktop\Fin-IQ\financial_intelligence_engine\models\risk_random_forest.joblib
+2026-03-20 13:22:41,911 | INFO | ml_models.dependency_propagation | Dependency propagation complete for 1 companies
+2026-03-20 13:22:41,974 | INFO | httpx | HTTP Request: POST http://testserver/run_ml_analysis "HTTP/1.1 200 OK"
+2026-03-20 13:22:41,980 | INFO | api.main | Running agent reasoning
+2026-03-20 13:22:41,994 | INFO | httpx | HTTP Request: POST http://testserver/query_agent "HTTP/1.1 200 OK"
+2026-03-20 13:22:42,001 | INFO | httpx | HTTP Request: GET http://testserver/get_alerts "HTTP/1.1 200 OK"
+2026-03-20 13:22:42,010 | INFO | httpx | HTTP Request: GET http://testserver/get_metrics "HTTP/1.1 200 OK"
+2026-03-20 14:00:18,103 | INFO | news_analysis.finbert_analyzer | News analysis complete: 1 entity records, 3 event records
+2026-03-20 14:00:18,119 | INFO | api.main | Ingesting transactions and news
+2026-03-20 14:00:18,182 | INFO | httpx | HTTP Request: POST http://testserver/ingest_transactions "HTTP/1.1 200 OK"
+2026-03-20 14:00:18,191 | INFO | api.main | Running graph builder stage
+2026-03-20 14:00:18,346 | INFO | news_analysis.finbert_analyzer | News analysis complete: 2 entity records, 2 event records
+2026-03-20 14:00:19,319 | INFO | httpx | HTTP Request: POST http://testserver/run_graph_builder "HTTP/1.1 200 OK"
+2026-03-20 14:00:19,332 | INFO | api.main | Running graph feature extraction and ML risk stage
+2026-03-20 14:00:19,411 | INFO | ml_models.temporal_analyzer | Temporal analysis complete for 1 companies
+2026-03-20 14:00:19,507 | INFO | ml_models.feature_extractor | Graph feature extraction complete for 1 companies
+2026-03-20 14:00:19,518 | INFO | ml_models.risk_model | Loading risk model from C:\Users\mails\OneDrive\Desktop\Fin-IQ\financial_intelligence_engine\models\risk_random_forest.joblib
+2026-03-20 14:00:19,804 | INFO | ml_models.dependency_propagation | Dependency propagation complete for 1 companies
+2026-03-20 16:23:08,781 | INFO | pipeline | Pipeline run started
+2026-03-20 16:23:08,783 | INFO | pipeline | Stage 1/10 start: loading sample data
+2026-03-20 16:23:25,288 | INFO | pipeline | Stage 1/10 end: loaded data | tx_records=531007 news_records=537 duration_sec=16.505
+2026-03-20 16:23:25,288 | INFO | pipeline | Stage 2/10 start: transaction anomaly detection
+2026-03-20 16:24:04,410 | INFO | pipeline | Stage 2/10 end: anomaly detection complete | records=531007 duration_sec=39.121
+2026-03-20 16:24:04,410 | INFO | pipeline | Stage 3/10 start: FinBERT sentiment and entity/event extraction
+2026-03-20 16:25:31,627 | INFO | pipeline | Stage 3/10 end: news analysis complete | entities=3222 events=0 sentiments=537 duration_sec=87.217
+2026-03-20 16:25:31,627 | INFO | pipeline | Stage 4/10 start: knowledge graph construction
+2026-03-20 16:25:40,009 | INFO | pipeline | Stage 4/10 end: graph construction complete | tx_rows=531007 summary={'transactions': 531007, 'events': 0, 'entities': 3222, 'company_updates': 0, 'dependency_edges': 0, 'dry_run': True} duration_sec=8.385
+2026-03-20 16:25:40,009 | INFO | pipeline | Stage 5/10 start: temporal analysis
+2026-03-20 16:25:47,485 | INFO | pipeline | Stage 5/10 end: temporal analysis complete | temporal=50 trends=50 duration_sec=7.471
+2026-03-20 16:25:47,485 | INFO | pipeline | Stage 6/10 start: graph feature extraction
+2026-03-20 16:27:34,750 | INFO | pipeline | Stage 6/10 end: feature extraction complete | feature_rows=50 duration_sec=107.271
+2026-03-20 16:27:34,750 | INFO | pipeline | Stage 7/10 start: risk prediction
+2026-03-20 16:27:34,986 | INFO | pipeline | Stage 7/10 end: risk prediction complete | prediction_rows=50 duration_sec=0.235
+2026-03-20 16:27:34,986 | INFO | pipeline | Stage 8/10 start: dependency propagation
+2026-03-20 16:27:49,156 | INFO | pipeline | Stage 8/10 end: dependency propagation complete | network_rows=50 dependency_edges=2450 duration_sec=14.164
+2026-03-20 16:27:49,156 | INFO | pipeline | Stage 9/10 start: agent reasoning
+2026-03-20 16:27:49,170 | INFO | pipeline | Stage 9/10 end: agent reasoning complete | alerts=50 duration_sec=0.014
+2026-03-20 16:27:49,170 | INFO | pipeline | Stage 10/10 start: persisting outputs
+2026-03-20 16:27:52,326 | INFO | pipeline | Stage 10/10 end: outputs persisted | output_dir=C:\Users\mails\OneDrive\Desktop\Fin-IQ\financial_intelligence_engine\outputs duration_sec=3.156
+2026-03-20 16:27:53,300 | INFO | pipeline | Post-stage metrics saved | metrics={'total_transactions': 531007, 'anomalies_detected': {'count': 2356, 'percentage': 0.44}, 'average_risk_score': 1.0, 'top_risky_companies': [{'company_id': 'COMP-0', 'risk_score': 1.0}, {'company_id': 'COMP-42', 'risk_score': 1.0}, {'company_id': 'COMP-33', 'risk_score': 1.0}, {'company_id': 'COMP-34', 'risk_score': 1.0}, {'company_id': 'COMP-35', 'risk_score': 1.0}]}
+2026-03-20 16:27:53,300 | INFO | pipeline | Pipeline run completed | total_duration_sec=284.518
+2026-03-20 16:27:53,634 | INFO | pipeline | Pipeline completed. Alerts generated: 50
+2026-03-20 16:34:16,963 | INFO | pipeline | Pipeline run started
+2026-03-20 16:34:16,963 | INFO | pipeline | Stage 1/10 start: loading sample data
+2026-03-20 16:34:31,314 | INFO | pipeline | Stage 1/10 end: loaded data | tx_records=531007 news_records=537 duration_sec=14.344
+2026-03-20 16:34:31,316 | INFO | pipeline | Stage 2/10 start: transaction anomaly detection
+2026-03-20 16:35:03,425 | INFO | pipeline | Stage 2/10 end: anomaly detection complete | records=531007 duration_sec=32.114
+2026-03-20 16:35:03,425 | INFO | pipeline | Stage 3/10 start: FinBERT sentiment and entity/event extraction
+2026-03-20 16:36:30,238 | INFO | pipeline | Stage 3/10 end: news analysis complete | entities=3222 events=0 sentiments=537 duration_sec=86.808
+2026-03-20 16:36:30,239 | INFO | pipeline | Stage 4/10 start: knowledge graph construction
+2026-03-20 16:36:38,504 | INFO | pipeline | Stage 4/10 end: graph construction complete | tx_rows=531007 summary={'transactions': 531007, 'events': 0, 'entities': 3222, 'company_updates': 0, 'dependency_edges': 0, 'dry_run': True} duration_sec=8.266
+2026-03-20 16:36:38,504 | INFO | pipeline | Stage 5/10 start: temporal analysis
+2026-03-20 16:36:45,393 | INFO | pipeline | Stage 5/10 end: temporal analysis complete | temporal=50 trends=50 duration_sec=6.887
+2026-03-20 16:36:45,393 | INFO | pipeline | Stage 6/10 start: graph feature extraction
+2026-03-20 16:38:30,701 | INFO | pipeline | Stage 6/10 end: feature extraction complete | feature_rows=50 duration_sec=105.317
+2026-03-20 16:38:30,701 | INFO | pipeline | Stage 7/10 start: risk prediction
+2026-03-20 16:38:30,936 | INFO | pipeline | Stage 7/10 end: risk prediction complete | prediction_rows=50 duration_sec=0.225
+2026-03-20 16:38:30,936 | INFO | pipeline | Stage 8/10 start: dependency propagation
+2026-03-20 16:38:45,008 | INFO | pipeline | Stage 8/10 end: dependency propagation complete | network_rows=50 dependency_edges=2450 duration_sec=14.081
+2026-03-20 16:38:45,008 | INFO | pipeline | Stage 9/10 start: agent reasoning
+2026-03-20 16:38:45,030 | INFO | pipeline | Stage 9/10 end: agent reasoning complete | alerts=50 duration_sec=0.013
+2026-03-20 16:38:45,031 | INFO | pipeline | Stage 10/10 start: persisting outputs
+2026-03-20 16:38:48,203 | INFO | pipeline | Stage 10/10 end: outputs persisted | output_dir=C:\Users\mails\OneDrive\Desktop\Fin-IQ\financial_intelligence_engine\outputs duration_sec=3.174
+2026-03-20 16:38:49,181 | INFO | pipeline | Post-stage metrics saved | metrics={'total_transactions': 531007, 'anomalies_detected': {'count': 2356, 'percentage': 0.44}, 'average_risk_score': 1.0, 'top_risky_companies': [{'company_id': 'COMP-0', 'risk_score': 1.0}, {'company_id': 'COMP-42', 'risk_score': 1.0}, {'company_id': 'COMP-33', 'risk_score': 1.0}, {'company_id': 'COMP-34', 'risk_score': 1.0}, {'company_id': 'COMP-35', 'risk_score': 1.0}]}
+2026-03-20 16:38:49,181 | INFO | pipeline | Pipeline run completed | total_duration_sec=272.211
+2026-03-20 16:38:49,513 | INFO | pipeline | Pipeline completed. Alerts generated: 50
+2026-03-20 18:19:46,425 | INFO | pipeline | Pipeline run started
+2026-03-20 18:19:46,425 | INFO | pipeline | Stage 1/10 start: loading sample data
+2026-03-20 18:19:56,836 | INFO | pipeline | Stage 1/10 end: loaded data | tx_records=531007 news_records=537 duration_sec=10.410
+2026-03-20 18:19:56,836 | INFO | pipeline | Stage 2/10 start: transaction anomaly detection
+2026-03-20 18:20:20,297 | INFO | pipeline | Stage 2/10 end: anomaly detection complete | records=531007 duration_sec=23.472
+2026-03-20 18:20:20,297 | INFO | pipeline | Stage 3/10 start: FinBERT sentiment and entity/event extraction
+2026-03-20 19:04:54,594 | INFO | pipeline | Pipeline run started
+2026-03-20 19:04:54,594 | INFO | pipeline | Stage 1/10 start: loading sample data
+2026-03-20 19:05:05,568 | INFO | pipeline | Stage 1/10 end: loaded data | tx_records=531007 news_records=537 duration_sec=10.960
+2026-03-20 19:05:05,569 | INFO | pipeline | Stage 2/10 start: transaction anomaly detection
+2026-03-20 19:05:29,481 | INFO | pipeline | Stage 2/10 end: anomaly detection complete | records=531007 duration_sec=23.920
+2026-03-20 19:05:29,481 | INFO | pipeline | Stage 3/10 start: FinBERT sentiment and entity/event extraction
+2026-03-20 19:06:52,300 | INFO | pipeline | Stage 3/10 end: news analysis complete | entities=3222 events=0 sentiments=537 duration_sec=82.810
+2026-03-20 19:06:52,300 | INFO | pipeline | Stage 4/10 start: knowledge graph construction
+2026-03-20 19:24:49,500 | INFO | pipeline | Pipeline run started
+2026-03-20 19:24:49,502 | INFO | pipeline | Stage 1/10 start: loading sample data
+2026-03-20 19:25:01,015 | INFO | pipeline | Stage 1/10 end: loaded data | tx_records=531007 news_records=537 duration_sec=11.514
+2026-03-20 19:25:01,015 | INFO | pipeline | Stage 2/10 start: transaction anomaly detection
+2026-03-20 19:25:26,428 | INFO | pipeline | Stage 2/10 end: anomaly detection complete | records=531007 duration_sec=25.412
+2026-03-20 19:25:26,429 | INFO | pipeline | Stage 3/10 start: FinBERT sentiment and entity/event extraction
+2026-03-20 19:26:46,547 | INFO | pipeline | Stage 3/10 end: news analysis complete | entities=3222 events=0 sentiments=537 duration_sec=80.122
+2026-03-20 19:26:46,547 | INFO | pipeline | Stage 4/10 start: knowledge graph construction
+2026-03-20 19:38:17,986 | INFO | pipeline | Pipeline run started
+2026-03-20 19:38:17,986 | INFO | pipeline | Stage 1/10 start: loading sample data
+2026-03-20 19:38:31,095 | INFO | pipeline | Stage 1/10 end: loaded data | tx_records=531007 news_records=537 duration_sec=13.099
+2026-03-20 19:38:31,096 | INFO | pipeline | Stage 2/10 start: transaction anomaly detection
+2026-03-20 19:39:02,630 | INFO | pipeline | Stage 2/10 end: anomaly detection complete | records=531007 duration_sec=31.535
+2026-03-20 19:39:02,631 | INFO | pipeline | Stage 3/10 start: FinBERT sentiment and entity/event extraction
+2026-03-20 19:40:28,825 | INFO | pipeline | Stage 3/10 end: news analysis complete | entities=3222 events=0 sentiments=537 duration_sec=86.194
+2026-03-20 19:40:28,825 | INFO | pipeline | Stage 4/10 start: knowledge graph construction
+2026-03-20 19:40:36,349 | INFO | pipeline | Stage 4/10 end: graph construction complete | tx_rows=531007 summary={'transactions': 531007, 'events': 0, 'entities': 3222, 'company_updates': 0, 'dependency_edges': 0, 'dry_run': True} duration_sec=7.528
+2026-03-20 19:40:36,349 | INFO | pipeline | Stage 5/10 start: temporal analysis
+2026-03-20 19:40:42,666 | INFO | pipeline | Stage 5/10 end: temporal analysis complete | temporal=50 trends=50 duration_sec=6.320
+2026-03-20 19:40:42,666 | INFO | pipeline | Stage 6/10 start: graph feature extraction
+2026-03-20 19:42:04,268 | INFO | pipeline | Pipeline run started
+2026-03-20 19:42:04,268 | INFO | pipeline | Stage 1/10 start: loading sample data
+2026-03-20 19:42:13,915 | INFO | pipeline | Stage 1/10 end: loaded data | tx_records=531007 news_records=537 duration_sec=9.647
+2026-03-20 19:42:13,915 | INFO | pipeline | Stage 2/10 start: transaction anomaly detection
+2026-03-20 19:42:37,328 | INFO | pipeline | Stage 2/10 end: anomaly detection complete | records=531007 duration_sec=23.412
+2026-03-20 19:42:37,328 | INFO | pipeline | Stage 3/10 start: FinBERT sentiment and entity/event extraction
+2026-03-20 19:43:40,387 | INFO | pipeline | Stage 3/10 end: news analysis complete | entities=3222 events=0 sentiments=537 duration_sec=63.057
+2026-03-20 19:43:40,387 | INFO | pipeline | Stage 4/10 start: knowledge graph construction
+2026-03-20 19:46:18,498 | INFO | pipeline | Pipeline run started
+2026-03-20 19:46:18,498 | INFO | pipeline | Stage 1/10 start: loading sample data
+2026-03-20 19:46:30,659 | INFO | pipeline | Stage 1/10 end: loaded data | tx_records=531007 news_records=537 duration_sec=12.161
+2026-03-20 19:46:30,659 | INFO | pipeline | Stage 2/10 start: transaction anomaly detection
+2026-03-20 19:46:58,434 | INFO | pipeline | Stage 2/10 end: anomaly detection complete | records=531007 duration_sec=27.774
+2026-03-20 19:46:58,435 | INFO | pipeline | Stage 3/10 start: FinBERT sentiment and entity/event extraction
+2026-03-20 19:48:14,722 | INFO | pipeline | Pipeline run started
+2026-03-20 19:48:14,722 | INFO | pipeline | Stage 1/10 start: loading sample data
+2026-03-20 19:48:26,793 | INFO | pipeline | Stage 1/10 end: loaded data | tx_records=531007 news_records=537 duration_sec=12.061
+2026-03-20 19:48:26,794 | INFO | pipeline | Stage 2/10 start: transaction anomaly detection
+2026-03-20 19:48:54,541 | INFO | pipeline | Stage 2/10 end: anomaly detection complete | records=531007 duration_sec=27.747
+2026-03-20 19:48:54,542 | INFO | pipeline | Stage 3/10 start: FinBERT sentiment and entity/event extraction
+2026-03-20 19:50:01,031 | INFO | pipeline | Stage 3/10 end: news analysis complete | entities=3222 events=0 sentiments=537 duration_sec=66.494
+2026-03-20 19:50:01,031 | INFO | pipeline | Stage 4/10 start: knowledge graph construction
+2026-03-20 19:50:01,031 | INFO | pipeline | Stage 4/10 skipped: Neo4j unavailable
+2026-03-20 19:50:01,031 | INFO | pipeline | Stage 5/10 start: temporal analysis
+2026-03-20 19:50:07,148 | INFO | pipeline | Stage 5/10 end: temporal analysis complete | temporal=50 trends=50 duration_sec=6.119
+2026-03-20 19:50:07,148 | INFO | pipeline | Stage 6/10 start: graph feature extraction
+2026-03-20 19:51:39,497 | INFO | pipeline | Stage 6/10 end: feature extraction complete | feature_rows=50 duration_sec=92.341
+2026-03-20 19:51:39,497 | INFO | pipeline | Stage 7/10 start: risk prediction
+2026-03-20 19:51:39,670 | INFO | pipeline | Stage 7/10 end: risk prediction complete | prediction_rows=50 duration_sec=0.187
+2026-03-20 19:51:39,670 | INFO | pipeline | Stage 8/10 start: dependency propagation
+2026-03-20 19:51:58,675 | INFO | pipeline | Pipeline run started
+2026-03-20 19:51:58,676 | INFO | pipeline | Stage 1/10 start: loading sample data
+2026-03-20 19:52:08,620 | INFO | pipeline | Stage 1/10 end: loaded data | tx_records=531007 news_records=537 duration_sec=9.951
+2026-03-20 19:52:08,620 | INFO | pipeline | Stage 2/10 start: transaction anomaly detection
+2026-03-20 19:52:32,129 | INFO | pipeline | Stage 2/10 end: anomaly detection complete | records=531007 duration_sec=23.504
+2026-03-20 19:52:32,129 | INFO | pipeline | Stage 3/10 start: FinBERT sentiment and entity/event extraction
+2026-03-20 19:53:34,542 | INFO | pipeline | Stage 3/10 end: news analysis complete | entities=3222 events=0 sentiments=537 duration_sec=62.419
+2026-03-20 19:53:34,542 | INFO | pipeline | Stage 4/10 start: knowledge graph construction
+2026-03-20 19:53:38,826 | INFO | pipeline | Stage 4/10 skipped: Neo4j unavailable
+2026-03-20 19:53:38,826 | INFO | pipeline | Stage 5/10 start: temporal analysis
+2026-03-20 19:53:44,869 | INFO | pipeline | Stage 5/10 end: temporal analysis complete | temporal=50 trends=50 duration_sec=6.053
+2026-03-20 19:53:44,869 | INFO | pipeline | Stage 6/10 start: graph feature extraction
+2026-03-20 19:55:15,476 | INFO | pipeline | Stage 6/10 end: feature extraction complete | feature_rows=50 duration_sec=90.608
+2026-03-20 19:55:15,476 | INFO | pipeline | Stage 7/10 start: risk prediction
+2026-03-20 19:55:15,671 | INFO | pipeline | Stage 7/10 end: risk prediction complete | prediction_rows=50 duration_sec=0.184
+2026-03-20 19:55:15,671 | INFO | pipeline | Stage 8/10 start: dependency propagation
+2026-03-20 20:02:50,218 | INFO | pipeline | Pipeline run started
+2026-03-20 20:02:50,218 | INFO | pipeline | Stage 1/10 start: loading sample data
+2026-03-20 20:02:59,532 | INFO | pipeline | Stage 1/10 end: loaded data | tx_records=531007 news_records=537 duration_sec=9.314
+2026-03-20 20:02:59,533 | INFO | pipeline | Stage 2/10 start: transaction anomaly detection
+2026-03-20 20:03:24,351 | INFO | pipeline | Stage 2/10 end: anomaly detection complete | records=531007 duration_sec=24.819
+2026-03-20 20:03:24,352 | INFO | pipeline | Stage 3/10 start: FinBERT sentiment and entity/event extraction
+2026-03-20 20:05:34,755 | INFO | pipeline | Pipeline run started
+2026-03-20 20:05:34,757 | INFO | pipeline | Stage 1/10 start: loading sample data
+2026-03-20 20:05:46,831 | INFO | pipeline | Stage 1/10 end: loaded data | tx_records=531007 news_records=537 duration_sec=12.079
+2026-03-20 20:05:46,831 | INFO | pipeline | Stage 2/10 start: transaction anomaly detection
+2026-03-20 20:06:14,977 | INFO | pipeline | Stage 2/10 end: anomaly detection complete | records=531007 duration_sec=28.150
+2026-03-20 20:06:14,977 | INFO | pipeline | Stage 3/10 start: FinBERT sentiment and entity/event extraction
+2026-03-20 20:07:16,740 | INFO | pipeline | Stage 3/10 end: news analysis complete | entities=3222 events=0 sentiments=537 duration_sec=61.760
+2026-03-20 20:07:16,740 | INFO | pipeline | Stage 4/10 start: knowledge graph construction
+2026-03-20 20:07:17,384 | INFO | pipeline | Stage 4/10 skipped: Neo4j unavailable
+2026-03-20 20:07:17,384 | INFO | pipeline | Stage 5/10 start: temporal analysis
+2026-03-20 20:07:23,474 | INFO | pipeline | Stage 5/10 end: temporal analysis complete | temporal=50 trends=50 duration_sec=6.081
+2026-03-20 20:07:23,475 | INFO | pipeline | Stage 6/10 start: graph feature extraction
+2026-03-20 20:08:52,594 | INFO | pipeline | Stage 6/10 end: feature extraction complete | feature_rows=50 duration_sec=89.119
+2026-03-20 20:08:52,594 | INFO | pipeline | Stage 7/10 start: risk prediction
+2026-03-20 20:08:52,760 | INFO | pipeline | Stage 7/10 end: risk prediction complete | prediction_rows=50 duration_sec=0.179
+2026-03-20 20:08:52,760 | INFO | pipeline | Stage 8/10 start: dependency propagation
+2026-03-20 20:08:58,135 | INFO | pipeline | Stage 8/10: Skipping graph update due to Neo4j unavailability
+2026-03-20 20:08:58,135 | INFO | pipeline | Stage 8/10 end: dependency propagation complete | network_rows=50 dependency_edges=2450 duration_sec=5.374
+2026-03-20 20:08:58,135 | INFO | pipeline | Stage 9/10 start: agent reasoning
+2026-03-20 20:08:58,153 | INFO | pipeline | Stage 9/10 end: agent reasoning complete | alerts=33 duration_sec=0.010
+2026-03-20 20:08:58,153 | INFO | pipeline | Stage 10/10 start: persisting outputs
+2026-03-20 20:09:00,732 | INFO | pipeline | Stage 10/10 end: outputs persisted | output_dir=C:\Users\mails\OneDrive\Desktop\Fin-IQ\financial_intelligence_engine\outputs duration_sec=2.574
+2026-03-20 20:09:01,502 | INFO | pipeline | Post-stage metrics saved | metrics={'total_transactions': 531007, 'anomalies_detected': {'count': 2356, 'percentage': 0.44}, 'average_risk_score': 0.439089, 'top_risky_companies': [{'company_id': 'COMP-6', 'risk_score': 0.9999999878979092}, {'company_id': 'COMP-32', 'risk_score': 0.9362376733700416}, {'company_id': 'COMP-49', 'risk_score': 0.8030598446931002}, {'company_id': 'COMP-15', 'risk_score': 0.7756992850949064}, {'company_id': 'COMP-38', 'risk_score': 0.7645956611925414}]}
+2026-03-20 20:09:01,502 | INFO | pipeline | Pipeline run completed | total_duration_sec=206.754
+2026-03-20 20:09:01,789 | INFO | pipeline | Pipeline completed. Alerts generated: 33

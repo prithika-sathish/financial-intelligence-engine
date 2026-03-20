@@ -22,6 +22,32 @@ except Exception:  # pragma: no cover
 LOGGER = logging.getLogger(__name__)
 
 
+def _llm_failure_fallback_answer(state: AgentState) -> str:
+    predictions = state.get("predictions", []) or []
+    risk_key = "propagated_risk" if any("propagated_risk" in p for p in predictions if isinstance(p, dict)) else "risk_score"
+    ranked = sorted(
+        [p for p in predictions if isinstance(p, dict)],
+        key=lambda row: float(row.get(risk_key, 0.0) or 0.0),
+        reverse=True,
+    )
+    top_companies = [str(row.get("company_id")) for row in ranked[:3] if row.get("company_id")]
+
+    graph_insights = state.get("graph_insights", {}) or {}
+    anomaly_total = 0
+    for supplier in graph_insights.get("abnormal_suppliers", []) or []:
+        try:
+            anomaly_total += int(float(supplier.get("tx_count", 0) or 0))
+        except Exception:
+            continue
+
+    companies_text = ", ".join(top_companies) if top_companies else "N/A"
+    return (
+        f"Top risk companies: {companies_text}\n"
+        f"Total anomalies: {anomaly_total}\n"
+        "Risk signals detected from transactions and network patterns."
+    )
+
+
 def _query_neo4j_insights() -> dict[str, Any]:
     insights: dict[str, Any] = {
         "abnormal_suppliers": [],
@@ -116,23 +142,28 @@ def _llm_enhance_answer(state: AgentState) -> AgentState:
     if not settings.groq_api_key or ChatGroq is None:
         return state
 
-    llm = ChatGroq(api_key=settings.groq_api_key, model=settings.groq_model, temperature=0.1)
-    prompt = (
-        "You are a financial intelligence agent. Provide concise risk insight and suggested actions.\n"
-        "You must combine graph observations, ML risk predictions, and news sentiment signals.\n"
-        f"User query: {state.get('query', '')}\n"
-        f"Predictions: {state.get('predictions', [])}\n"
-        f"Temporal trends: {state.get('temporal_trends', [])}\n"
-        f"Network contagion: {state.get('network_risk', [])}\n"
-        f"Graph insights: {state.get('graph_insights', {})}\n"
-        f"News signals: {state.get('news_signals', [])}\n"
-        f"Graph summary: {state.get('graph_summary', {})}\n"
-        f"Current draft answer: {state.get('answer', '')}\n"
-    )
-    response = llm.invoke(prompt)
-    content = getattr(response, "content", None)
-    if isinstance(content, str) and content.strip():
-        state["answer"] = content
+    try:
+        llm = ChatGroq(api_key=settings.groq_api_key, model=settings.groq_model, temperature=0.1)
+        prompt = (
+            "You are a financial intelligence agent. Provide concise risk insight and suggested actions.\n"
+            "You must combine graph observations, ML risk predictions, and news sentiment signals.\n"
+            f"User query: {state.get('query', '')}\n"
+            f"Predictions: {state.get('predictions', [])}\n"
+            f"Temporal trends: {state.get('temporal_trends', [])}\n"
+            f"Network contagion: {state.get('network_risk', [])}\n"
+            f"Graph insights: {state.get('graph_insights', {})}\n"
+            f"News signals: {state.get('news_signals', [])}\n"
+            f"Graph summary: {state.get('graph_summary', {})}\n"
+            f"Current draft answer: {state.get('answer', '')}\n"
+        )
+        response = llm.invoke(prompt)
+        content = getattr(response, "content", None)
+        if isinstance(content, str) and content.strip():
+            state["answer"] = content
+    except Exception as exc:  # pragma: no cover
+        LOGGER.warning("LLM enhance failed, using fallback answer: %s", exc)
+        state["answer"] = _llm_failure_fallback_answer(state)
+
     return state
 
 

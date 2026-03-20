@@ -1,23 +1,352 @@
 [
   {
-    "company_id": "COMP-ALPHA",
-    "base_risk": 0.6087500000000001,
-    "propagated_risk": 0.6087500000000001,
+    "company_id": "COMP-0",
+    "base_risk": 0.7446735970317162,
+    "propagated_risk": 0.619825399642969,
+    "network_exposure_score": 0.7686257929562202,
+    "systemic_importance_score": 7.046661654623088
+  },
+  {
+    "company_id": "COMP-1",
+    "base_risk": 0.2721680373904285,
+    "propagated_risk": 0.2302365822563286,
+    "network_exposure_score": 0.4700180136722475,
+    "systemic_importance_score": 5.263786174517083
+  },
+  {
+    "company_id": "COMP-10",
+    "base_risk": 0.37663422066721514,
+    "propagated_risk": 0.31426151552900605,
+    "network_exposure_score": 0.268733104482876,
+    "systemic_importance_score": 4.061998416472023
+  },
+  {
+    "company_id": "COMP-11",
+    "base_risk": 0.6861190954581394,
+    "propagated_risk": 0.5716732818899658,
+    "network_exposure_score": 0.7411505596936354,
+    "systemic_importance_score": 6.882613648270191
+  },
+  {
+    "company_id": "COMP-12",
+    "base_risk": 0.6663116874523046,
+    "propagated_risk": 0.5557064823616749,
+    "network_exposure_score": 0.7734857577351902,
+    "systemic_importance_score": 7.075672140052115
+  },
+  {
+    "company_id": "COMP-13",
+    "base_risk": 0.5876527907984174,
+    "propagated_risk": 0.48971306973050044,
+    "network_exposure_score": 0.5787849347133152,
+    "systemic_importance_score": 5.913188491482431
+  },
+  {
+    "company_id": "COMP-14",
+    "base_risk": 0.5393216566065118,
+    "propagated_risk": 0.4497499594369386,
+    "network_exposure_score": 0.5400894418540346,
+    "systemic_importance_score": 5.682159798005925
+  },
+  {
+    "company_id": "COMP-15",
+    "base_risk": 0.7751041823012419,
+    "propagated_risk": 0.6454689046022501,
+    "network_exposure_score": 0.8548113425032831,
+    "systemic_importance_score": 7.561238477462858
+  },
+  {
+    "company_id": "COMP-16",
+    "base_risk": 0.2323031730799312,
+    "propagated_risk": 0.1959540694008462,
+    "network_exposure_score": 0.27408102815595403,
+    "systemic_importance_score": 4.093932305128205
+  },
+  {
+    "company_id": "COMP-17",
+    "base_risk": 0.6376490655014603,
+    "propagated_risk": 0.5321480887002373,
+    "network_exposure_score": 0.7684105522001701,
+    "systemic_importance_score": 7.045372240115551
+  },
+  {
+    "company_id": "COMP-18",
+    "base_risk": 0.49726950775141626,
+    "propagated_risk": 0.41455295771540934,
+    "network_exposure_score": 0.4466024985946598,
+    "systemic_importance_score": 5.1239857420065515
+  },
+  {
+    "company_id": "COMP-19",
+    "base_risk": 0.4462223978025685,
+    "propagated_risk": 0.37292000002568626,
+    "network_exposure_score": 0.475117178474828,
+    "systemic_importance_score": 5.294237227445372
+  },
+  {
+    "company_id": "COMP-2",
+    "base_risk": 0.4951722299850244,
+    "propagated_risk": 0.41336560355253216,
+    "network_exposure_score": 0.5143070994073556,
+    "systemic_importance_score": 5.528221684883801
+  },
+  {
+    "company_id": "COMP-20",
+    "base_risk": 0.5127136145862423,
+    "propagated_risk": 0.429140246264092,
+    "network_exposure_score": 0.6917702042535412,
+    "systemic_importance_score": 6.587784284543763
+  },
+  {
+    "company_id": "COMP-21",
+    "base_risk": 0.04012099917557939,
+    "propagated_risk": 0.036184344693184545,
     "network_exposure_score": 0.0,
-    "systemic_importance_score": 0.04186061450397812
+    "systemic_importance_score": 2.457511663992038
   },
   {
-    "company_id": "COMP-BETA",
-    "base_risk": 0.23792578913805934,
-    "propagated_risk": 0.42726113593121406,
-    "network_exposure_score": 0.22083710043328653,
-    "systemic_importance_score": 0.34207320002827446
+    "company_id": "COMP-22",
+    "base_risk": 0.18321210183720765,
+    "propagated_risk": 0.15457436971417754,
+    "network_exposure_score": 0.13164354029454645,
+    "systemic_importance_score": 3.243497111971496
   },
   {
-    "company_id": "COMP-GAMMA",
-    "base_risk": 0.4541757891380593,
-    "propagated_risk": 0.5740787571679545,
-    "network_exposure_score": 0.15140472167002705,
-    "systemic_importance_score": 0.34207320002827446
+    "company_id": "COMP-23",
+    "base_risk": 0.6057648105642647,
+    "propagated_risk": 0.5061305112762428,
+    "network_exposure_score": 0.7811995847445026,
+    "systemic_importance_score": 7.121730024317066
+  },
+  {
+    "company_id": "COMP-24",
+    "base_risk": 0.5533875576635493,
+    "propagated_risk": 0.46225861042903404,
+    "network_exposure_score": 0.6656006370819506,
+    "systemic_importance_score": 6.431538331685415
+  },
+  {
+    "company_id": "COMP-25",
+    "base_risk": 0.48181104474397773,
+    "propagated_risk": 0.40272895615386417,
+    "network_exposure_score": 0.5554700946626179,
+    "systemic_importance_score": 5.77398948866605
+  },
+  {
+    "company_id": "COMP-26",
+    "base_risk": 0.1302598380824986,
+    "propagated_risk": 0.11164009553775937,
+    "network_exposure_score": 0.1917027277285469,
+    "systemic_importance_score": 3.602083958080698
+  },
+  {
+    "company_id": "COMP-27",
+    "base_risk": 0.31999399193732947,
+    "propagated_risk": 0.26826614876994836,
+    "network_exposure_score": 0.3259640529753508,
+    "systemic_importance_score": 4.403703202104784
+  },
+  {
+    "company_id": "COMP-28",
+    "base_risk": 0.2558685891490387,
+    "propagated_risk": 0.21572722532221475,
+    "network_exposure_score": 0.329766304172642,
+    "systemic_importance_score": 4.426404236393239
+  },
+  {
+    "company_id": "COMP-29",
+    "base_risk": 0.3819763268111258,
+    "propagated_risk": 0.3204497373971694,
+    "network_exposure_score": 0.49855104892758945,
+    "systemic_importance_score": 5.434149840949183
+  },
+  {
+    "company_id": "COMP-3",
+    "base_risk": 0.6792626529970314,
+    "propagated_risk": 0.5643742315599969,
+    "network_exposure_score": 0.5251349591080324,
+    "systemic_importance_score": 5.592868913878345
+  },
+  {
+    "company_id": "COMP-30",
+    "base_risk": 0.011815913287519984,
+    "propagated_risk": 0.013878719221790098,
+    "network_exposure_score": 0.11241278388700031,
+    "systemic_importance_score": 3.124545022022341
+  },
+  {
+    "company_id": "COMP-31",
+    "base_risk": 0.29379987266994106,
+    "propagated_risk": 0.2473153059044757,
+    "network_exposure_score": 0.3919274344821971,
+    "systemic_importance_score": 4.79754368027527
+  },
+  {
+    "company_id": "COMP-32",
+    "base_risk": 0.9356634518320066,
+    "propagated_risk": 0.7781223390494065,
+    "network_exposure_score": 0.9994245841140664,
+    "systemic_importance_score": 8.424669283578739
+  },
+  {
+    "company_id": "COMP-33",
+    "base_risk": 0.2897755027208846,
+    "propagated_risk": 0.2441039156769943,
+    "network_exposure_score": 0.4022914149199784,
+    "systemic_importance_score": 4.859421629104655
+  },
+  {
+    "company_id": "COMP-34",
+    "base_risk": 0.28325477462438853,
+    "propagated_risk": 0.2389717067010037,
+    "network_exposure_score": 0.4277423350726506,
+    "systemic_importance_score": 5.011379538936682
+  },
+  {
+    "company_id": "COMP-35",
+    "base_risk": 0.13095016777279228,
+    "propagated_risk": 0.112268391191824,
+    "network_exposure_score": 0.19942980698660615,
+    "systemic_importance_score": 3.648220828653512
+  },
+  {
+    "company_id": "COMP-36",
+    "base_risk": 0.36663785345695704,
+    "propagated_risk": 0.305964870546355,
+    "network_exposure_score": 0.25980534805301875,
+    "systemic_importance_score": 4.0086982041268335
+  },
+  {
+    "company_id": "COMP-37",
+    "base_risk": 0.21122381935602783,
+    "propagated_risk": 0.17968703053435492,
+    "network_exposure_score": 0.39966685789714235,
+    "systemic_importance_score": 4.843750971226955
+  },
+  {
+    "company_id": "COMP-38",
+    "base_risk": 0.7672459764281311,
+    "propagated_risk": 0.6362939411478152,
+    "network_exposure_score": 0.5026963634887097,
+    "systemic_importance_score": 5.458899969553069
+  },
+  {
+    "company_id": "COMP-39",
+    "base_risk": 0.19690918265898136,
+    "propagated_risk": 0.16685012168414698,
+    "network_exposure_score": 0.2637015234969914,
+    "systemic_importance_score": 4.031961152887118
+  },
+  {
+    "company_id": "COMP-4",
+    "base_risk": 0.4450145643878185,
+    "propagated_risk": 0.3717558938669048,
+    "network_exposure_score": 0.4503110361469883,
+    "systemic_importance_score": 5.146127824280764
+  },
+  {
+    "company_id": "COMP-40",
+    "base_risk": 0.1697602159632559,
+    "propagated_risk": 0.14488038220037466,
+    "network_exposure_score": 0.29867508654879565,
+    "systemic_importance_score": 4.240771815451863
+  },
+  {
+    "company_id": "COMP-41",
+    "base_risk": 0.49831159306602035,
+    "propagated_risk": 0.41687588604303527,
+    "network_exposure_score": 0.6330023473709832,
+    "systemic_importance_score": 6.236904967905033
+  },
+  {
+    "company_id": "COMP-42",
+    "base_risk": 0.1711713893016842,
+    "propagated_risk": 0.14413177474875116,
+    "network_exposure_score": 0.05996232320654737,
+    "systemic_importance_score": 2.8155185568434558
+  },
+  {
+    "company_id": "COMP-43",
+    "base_risk": 0.41127373146139,
+    "propagated_risk": 0.34458533655984014,
+    "network_exposure_score": 0.5088940788425237,
+    "systemic_importance_score": 5.495899838206124
+  },
+  {
+    "company_id": "COMP-44",
+    "base_risk": 0.5008626288058512,
+    "propagated_risk": 0.41788059969106317,
+    "network_exposure_score": 0.49481555876547856,
+    "systemic_importance_score": 5.4118464254614675
+  },
+  {
+    "company_id": "COMP-45",
+    "base_risk": 0.14916444962953057,
+    "propagated_risk": 0.1274294559489133,
+    "network_exposure_score": 0.22605676452214563,
+    "systemic_importance_score": 3.8071963440379655
+  },
+  {
+    "company_id": "COMP-46",
+    "base_risk": 0.6610809753606504,
+    "propagated_risk": 0.5509144567830497,
+    "network_exposure_score": 0.7103911135607616,
+    "systemic_importance_score": 6.698960313411531
+  },
+  {
+    "company_id": "COMP-47",
+    "base_risk": 0.0,
+    "propagated_risk": 0.00450585911750509,
+    "network_exposure_score": 0.14942033863904977,
+    "systemic_importance_score": 3.3406035815219144
+  },
+  {
+    "company_id": "COMP-48",
+    "base_risk": 0.5065682557719485,
+    "propagated_risk": 0.42417425213754756,
+    "network_exposure_score": 0.6988069320293728,
+    "systemic_importance_score": 6.629796825409223
+  },
+  {
+    "company_id": "COMP-49",
+    "base_risk": 0.8025810678529042,
+    "propagated_risk": 0.6680770311574777,
+    "network_exposure_score": 0.867151038042089,
+    "systemic_importance_score": 7.634913863886487
+  },
+  {
+    "company_id": "COMP-5",
+    "base_risk": 0.6122545560853644,
+    "propagated_risk": 0.5108978494416472,
+    "network_exposure_score": 0.709810259756023,
+    "systemic_importance_score": 6.695490949745036
+  },
+  {
+    "company_id": "COMP-6",
+    "base_risk": 0.9999999873538051,
+    "propagated_risk": 0.8308093636377274,
+    "network_exposure_score": 0.9999999966438776,
+    "systemic_importance_score": 8.428108089997863
+  },
+  {
+    "company_id": "COMP-7",
+    "base_risk": 0.25268257447009024,
+    "propagated_risk": 0.2132862209010798,
+    "network_exposure_score": 0.34939323554363305,
+    "systemic_importance_score": 4.543587293065325
+  },
+  {
+    "company_id": "COMP-8",
+    "base_risk": 0.60136546768916,
+    "propagated_risk": 0.5022501776230525,
+    "network_exposure_score": 0.7468007006017461,
+    "systemic_importance_score": 6.916347574694731
+  },
+  {
+    "company_id": "COMP-9",
+    "base_risk": 0.592700917729202,
+    "propagated_risk": 0.4933617833337336,
+    "network_exposure_score": 0.5188923383312015,
+    "systemic_importance_score": 5.555598258527389
   }
 ]
