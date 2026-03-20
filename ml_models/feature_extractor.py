@@ -3,11 +3,33 @@ from __future__ import annotations
 import logging
 
 import networkx as nx
+import numpy as np
 import pandas as pd
 
 from ml_models.dependency_propagation import compute_network_vulnerability_features
 
 LOGGER = logging.getLogger(__name__)
+
+
+def _standardize_with_fallback(df: pd.DataFrame, cols: list[str]) -> pd.DataFrame:
+    """Standardize numeric columns with sklearn when available, else use manual z-score."""
+    if not cols:
+        return df
+
+    try:
+        # Runtime import avoids hard failure in environments where SciPy DLLs are policy-blocked.
+        from sklearn.preprocessing import StandardScaler  # type: ignore
+
+        scaler = StandardScaler()
+        df[cols] = scaler.fit_transform(df[cols])
+    except Exception as exc:
+        LOGGER.warning("StandardScaler unavailable, using numpy fallback standardization: %s", exc)
+        means = df[cols].mean(axis=0)
+        stds = df[cols].std(axis=0, ddof=0).replace(0.0, 1.0)
+        df[cols] = (df[cols] - means) / stds
+
+    df[cols] = df[cols].clip(-5.0, 5.0)
+    return df
 
 
 def _supplier_concentration(group: pd.DataFrame) -> float:
@@ -162,6 +184,9 @@ def build_graph_features(
         if col not in features.columns:
             features[col] = 0.0
         features[col] = pd.to_numeric(features[col], errors="coerce").fillna(0.0)
+
+    numeric_cols = [c for c in features.select_dtypes(include=[np.number]).columns if c != "company_id"]
+    features = _standardize_with_fallback(features, numeric_cols)
 
     if "risk_trend" not in features.columns:
         features["risk_trend"] = "stable"

@@ -51,11 +51,15 @@ SET en.name = $entity_name, en.entity_type = $entity_type, en.news_id = $news_id
 
 
 def _safe_run(session: object, query: str, params: dict[str, Any]) -> bool:
+    """Execute a query on session. Fails fast without retries.
+    
+    Returns True if successful, False otherwise (logs only once via caller).
+    """
     try:
         session.run(query, params)
         return True
-    except Exception as exc:  # pragma: no cover
-        LOGGER.warning("Neo4j write failed: %s", exc)
+    except Exception:  # pragma: no cover
+        # Fail fast: don't log here, let caller handle logging once per stage
         return False
 
 

@@ -55,9 +55,20 @@ def _load_finbert():
     settings = get_settings()
     if AutoTokenizer is None or AutoModelForSequenceClassification is None:
         return None, None
-    tokenizer = AutoTokenizer.from_pretrained(settings.finbert_model)
-    model = AutoModelForSequenceClassification.from_pretrained(settings.finbert_model)
-    return tokenizer, model
+
+    try:
+        # Prefer fast tokenizer when available, but gracefully fall back to slow mode.
+        try:
+            tokenizer = AutoTokenizer.from_pretrained(settings.finbert_model)
+        except Exception as exc:
+            LOGGER.warning("Fast tokenizer load failed, retrying with use_fast=False: %s", exc)
+            tokenizer = AutoTokenizer.from_pretrained(settings.finbert_model, use_fast=False)
+
+        model = AutoModelForSequenceClassification.from_pretrained(settings.finbert_model)
+        return tokenizer, model
+    except Exception as exc:
+        LOGGER.warning("FinBERT load unavailable, using neutral sentiment fallback: %s", exc)
+        return None, None
 
 
 def _classify_entity(name: str) -> str:

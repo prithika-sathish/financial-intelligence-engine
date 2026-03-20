@@ -1,0 +1,30 @@
+{
+  "total_transactions": 531007,
+  "anomalies_detected": {
+    "count": 2356,
+    "percentage": 0.44
+  },
+  "average_risk_score": 0.439089,
+  "top_risky_companies": [
+    {
+      "company_id": "COMP-6",
+      "risk_score": 0.9999999878979092
+    },
+    {
+      "company_id": "COMP-32",
+      "risk_score": 0.9362376733700416
+    },
+    {
+      "company_id": "COMP-49",
+      "risk_score": 0.8030598446931002
+    },
+    {
+      "company_id": "COMP-15",
+      "risk_score": 0.7756992850949064
+    },
+    {
+      "company_id": "COMP-38",
+      "risk_score": 0.7645956611925414
+    }
+  ]
+}
