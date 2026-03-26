@@ -110,28 +110,23 @@ def predict_risk(graph_and_transaction_features_df: pd.DataFrame, model_path: st
     network_component = pd.to_numeric(frame.get("network_exposure_score", 0.0), errors="coerce").fillna(0.0)
     systemic_component = pd.to_numeric(frame.get("systemic_importance_score", 0.0), errors="coerce").fillna(0.0)
     blended_risk = (0.75 * base_ml + 0.15 * network_component + 0.10 * systemic_component).clip(0.0, 1.0)
-    blended_risk = _normalize01(blended_risk)
 
     # Smooth model score with a simple, interpretable feature-based signal to reduce collapse.
     anomaly_mean = pd.to_numeric(frame.get("avg_anomaly_score", 0.0), errors="coerce").fillna(0.0)
     sentiment_impact = pd.to_numeric(frame.get("negative_sentiment_ratio", 0.0), errors="coerce").fillna(0.0)
     base_feature_score = _normalize01(0.6 * anomaly_mean + 0.4 * sentiment_impact)
 
-    frame["risk_score"] = (0.7 * blended_risk + 0.3 * base_feature_score).clip(0.0, 1.0)
-    frame["risk_score"] = frame["risk_score"] + np.random.normal(0, 0.01, len(frame))
-    frame["risk_score"] = _normalize01(frame["risk_score"]).clip(0.0, 1.0)
+    frame["risk_score"] = (0.7 * blended_risk + 0.3 * base_feature_score).clip(0.0, 0.95)
 
     frame["propagated_risk"] = frame["risk_score"]
-    low_thr = float(np.percentile(frame["risk_score"].values, 33))
-    high_thr = float(np.percentile(frame["risk_score"].values, 66))
-
-    def classify_risk(x):
-        if x < low_thr:
-            return "low"
-        elif x < high_thr:
-            return "medium"
-        else:
+    def classify_risk(x: float) -> str:
+        if x > 0.85:
+            return "critical"
+        if x > 0.65:
             return "high"
+        if x > 0.40:
+            return "medium"
+        return "low"
 
     frame["risk_level"] = frame["risk_score"].apply(classify_risk)
     frame["systemic_risk_level"] = frame["risk_level"]

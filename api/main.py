@@ -14,8 +14,11 @@ from data_ingestion.schemas import IngestionResponse
 from graph_engine.graph_builder import build_financial_graph
 from graph_engine.neo4j_client import is_neo4j_available
 from ml_models.dependency_propagation import propagate_dependency_risk
+from ml_models.cost_impact_analyzer import add_cost_impact_and_criticality
+from ml_models.decision_engine import recommend_actions
 from ml_models.feature_extractor import build_graph_features
 from ml_models.risk_model import predict_risk
+from ml_models.simulation_engine import run_supplier_failure_simulations
 from ml_models.temporal_analyzer import analyze_temporal_risk
 from news_analysis.finbert_analyzer import analyze_news_dataframe
 from transaction_analysis.anomaly_detector import detect_transaction_anomalies
@@ -36,6 +39,14 @@ def _validate_risk_distribution(predictions_df: pd.DataFrame) -> None:
         assert float(predictions_df["propagated_risk"].std()) > 0.05
     except AssertionError:
         LOGGER.warning("Risk collapse detected")
+
+
+def _validate_decision_support_outputs(predictions_df: pd.DataFrame) -> None:
+    try:
+        assert float(predictions_df["estimated_cost_impact"].std()) > 0.05
+        assert int(predictions_df["recommended_action"].nunique()) >= 2
+    except AssertionError:
+        LOGGER.warning("Decision-support output collapse detected")
 
 _STATE: dict[str, Any] = {
     "transactions_df": pd.DataFrame(),
@@ -178,6 +189,25 @@ def run_ml_analysis():
     _validate_risk_distribution(predictions_df)
     if "propagated_risk_net" in predictions_df.columns:
         predictions_df = predictions_df.drop(columns=["propagated_risk_net"])
+
+    predictions_df = add_cost_impact_and_criticality(
+        predictions_df=predictions_df,
+        transactions_df=tx_df,
+        dependency_edges_df=dependency_edges_df,
+        risk_col="propagated_risk",
+    )
+    predictions_df = recommend_actions(
+        predictions_df=predictions_df,
+        risk_col="propagated_risk",
+        cost_col="estimated_cost_impact",
+    )
+    predictions_df = run_supplier_failure_simulations(
+        predictions_df=predictions_df,
+        dependency_edges_df=dependency_edges_df,
+        transactions_df=tx_df,
+        top_k_alternatives=3,
+    )
+    _validate_decision_support_outputs(predictions_df)
 
     tx_graph_df = tx_df.merge(anomaly_df, on="transaction_id", how="left")
     

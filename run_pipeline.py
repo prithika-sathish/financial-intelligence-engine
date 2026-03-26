@@ -12,8 +12,11 @@ from data_ingestion.loader import load_news, load_transactions
 from graph_engine.graph_builder import build_financial_graph
 from graph_engine.neo4j_client import is_neo4j_available
 from ml_models.dependency_propagation import propagate_dependency_risk
+from ml_models.cost_impact_analyzer import add_cost_impact_and_criticality
+from ml_models.decision_engine import recommend_actions
 from ml_models.feature_extractor import build_graph_features
 from ml_models.risk_model import predict_risk
+from ml_models.simulation_engine import run_supplier_failure_simulations
 from ml_models.temporal_analyzer import analyze_temporal_risk
 from news_analysis.finbert_analyzer import analyze_news_dataframe
 from transaction_analysis.anomaly_detector import detect_transaction_anomalies
@@ -34,6 +37,14 @@ def _validate_risk_distribution(predictions_df: pd.DataFrame) -> None:
         assert float(predictions_df["propagated_risk"].std()) > 0.05
     except AssertionError:
         LOGGER.warning("Risk collapse detected")
+
+
+def _validate_decision_support_outputs(predictions_df: pd.DataFrame) -> None:
+    try:
+        assert float(predictions_df["estimated_cost_impact"].std()) > 0.05
+        assert int(predictions_df["recommended_action"].nunique()) >= 2
+    except AssertionError:
+        LOGGER.warning("Decision-support output collapse detected")
 
 
 def _setup_pipeline_file_logging(root: Path) -> None:
@@ -108,32 +119,32 @@ def run_pipeline() -> dict:
     LOGGER.info("Pipeline run started")
 
     stage_started = time.perf_counter()
-    LOGGER.info("Stage 1/10 start: loading sample data")
+    LOGGER.info("Stage 1/11 start: loading sample data")
     tx_records = _read_json(sample_dir / "sample_transactions.json")
     news_records = _read_json(sample_dir / "sample_news.json")
     tx_df = load_transactions(tx_records)
     news_df = load_news(news_records)
     LOGGER.info(
-        "Stage 1/10 end: loaded data | tx_records=%s news_records=%s duration_sec=%.3f",
+        "Stage 1/11 end: loaded data | tx_records=%s news_records=%s duration_sec=%.3f",
         len(tx_df),
         len(news_df),
         time.perf_counter() - stage_started,
     )
 
     stage_started = time.perf_counter()
-    LOGGER.info("Stage 2/10 start: transaction anomaly detection")
+    LOGGER.info("Stage 2/11 start: transaction anomaly detection")
     anomaly_scores_df = detect_transaction_anomalies(tx_df)
     LOGGER.info(
-        "Stage 2/10 end: anomaly detection complete | records=%s duration_sec=%.3f",
+        "Stage 2/11 end: anomaly detection complete | records=%s duration_sec=%.3f",
         len(anomaly_scores_df),
         time.perf_counter() - stage_started,
     )
 
     stage_started = time.perf_counter()
-    LOGGER.info("Stage 3/10 start: FinBERT sentiment and entity/event extraction")
+    LOGGER.info("Stage 3/11 start: FinBERT sentiment and entity/event extraction")
     entities_df, events_df, sentiment_df = analyze_news_dataframe(news_df)
     LOGGER.info(
-        "Stage 3/10 end: news analysis complete | entities=%s events=%s sentiments=%s duration_sec=%.3f",
+        "Stage 3/11 end: news analysis complete | entities=%s events=%s sentiments=%s duration_sec=%.3f",
         len(entities_df),
         len(events_df),
         len(sentiment_df),
@@ -141,14 +152,14 @@ def run_pipeline() -> dict:
     )
 
     stage_started = time.perf_counter()
-    LOGGER.info("Stage 4/10 start: knowledge graph construction")
+    LOGGER.info("Stage 4/11 start: knowledge graph construction")
     
     # Initialize tx_graph_df before Neo4j check to avoid UnboundLocalError in Stage 8
     tx_graph_df = tx_df.merge(anomaly_scores_df, on="transaction_id", how="left")
     
     # Check Neo4j connectivity BEFORE attempting writes
     if not is_neo4j_available():
-        LOGGER.info("Stage 4/10 skipped: Neo4j unavailable")
+        LOGGER.info("Stage 4/11 skipped: Neo4j unavailable")
         graph_summary = {"transactions": 0, "events": 0, "entities": 0, "dry_run": True}
     else:
         graph_summary = build_financial_graph(
@@ -157,24 +168,24 @@ def run_pipeline() -> dict:
             events_df=events_df,
         )
         LOGGER.info(
-            "Stage 4/10 end: graph construction complete | tx_rows=%s summary=%s duration_sec=%.3f",
+            "Stage 4/11 end: graph construction complete | tx_rows=%s summary=%s duration_sec=%.3f",
             len(tx_graph_df),
             graph_summary,
             time.perf_counter() - stage_started,
         )
 
     stage_started = time.perf_counter()
-    LOGGER.info("Stage 5/10 start: temporal analysis")
+    LOGGER.info("Stage 5/11 start: temporal analysis")
     temporal_df, trend_df = analyze_temporal_risk(tx_df, anomaly_scores_df, sentiment_df, events_df)
     LOGGER.info(
-        "Stage 5/10 end: temporal analysis complete | temporal=%s trends=%s duration_sec=%.3f",
+        "Stage 5/11 end: temporal analysis complete | temporal=%s trends=%s duration_sec=%.3f",
         len(temporal_df),
         len(trend_df),
         time.perf_counter() - stage_started,
     )
 
     stage_started = time.perf_counter()
-    LOGGER.info("Stage 6/10 start: graph feature extraction")
+    LOGGER.info("Stage 6/11 start: graph feature extraction")
     features_df = build_graph_features(
         tx_df,
         anomaly_scores_df,
@@ -185,22 +196,22 @@ def run_pipeline() -> dict:
         trend_df,
     )
     LOGGER.info(
-        "Stage 6/10 end: feature extraction complete | feature_rows=%s duration_sec=%.3f",
+        "Stage 6/11 end: feature extraction complete | feature_rows=%s duration_sec=%.3f",
         len(features_df),
         time.perf_counter() - stage_started,
     )
 
     stage_started = time.perf_counter()
-    LOGGER.info("Stage 7/10 start: risk prediction")
+    LOGGER.info("Stage 7/11 start: risk prediction")
     predictions_df = predict_risk(features_df)
     LOGGER.info(
-        "Stage 7/10 end: risk prediction complete | prediction_rows=%s duration_sec=%.3f",
+        "Stage 7/11 end: risk prediction complete | prediction_rows=%s duration_sec=%.3f",
         len(predictions_df),
         time.perf_counter() - stage_started,
     )
 
     stage_started = time.perf_counter()
-    LOGGER.info("Stage 8/10 start: dependency propagation")
+    LOGGER.info("Stage 8/11 start: dependency propagation")
     network_df, dependency_edges_df = propagate_dependency_risk(predictions_df, tx_df, alpha=0.4, beta=0.3, max_iter=3)
     predictions_df = predictions_df.merge(
         network_df[["company_id", "propagated_risk", "systemic_importance_score", "network_exposure_score"]],
@@ -248,18 +259,44 @@ def run_pipeline() -> dict:
             dependency_edges_df=dependency_edges_df,
         )
     else:
-        LOGGER.info("Stage 8/10: Skipping graph update due to Neo4j unavailability")
+        LOGGER.info("Stage 8/11: Skipping graph update due to Neo4j unavailability")
         graph_summary = {"transactions": 0, "events": 0, "entities": 0, "dry_run": True}
     
     LOGGER.info(
-        "Stage 8/10 end: dependency propagation complete | network_rows=%s dependency_edges=%s duration_sec=%.3f",
+        "Stage 8/11 end: dependency propagation complete | network_rows=%s dependency_edges=%s duration_sec=%.3f",
         len(network_df),
         len(dependency_edges_df),
         time.perf_counter() - stage_started,
     )
 
     stage_started = time.perf_counter()
-    LOGGER.info("Stage 9/10 start: agent reasoning")
+    LOGGER.info("Stage 9/11 start: decision-support enrichment")
+    predictions_df = add_cost_impact_and_criticality(
+        predictions_df=predictions_df,
+        transactions_df=tx_df,
+        dependency_edges_df=dependency_edges_df,
+        risk_col="propagated_risk",
+    )
+    predictions_df = recommend_actions(
+        predictions_df=predictions_df,
+        risk_col="propagated_risk",
+        cost_col="estimated_cost_impact",
+    )
+    predictions_df = run_supplier_failure_simulations(
+        predictions_df=predictions_df,
+        dependency_edges_df=dependency_edges_df,
+        transactions_df=tx_df,
+        top_k_alternatives=3,
+    )
+    _validate_decision_support_outputs(predictions_df)
+    LOGGER.info(
+        "Stage 9/11 end: decision-support enrichment complete | prediction_rows=%s duration_sec=%.3f",
+        len(predictions_df),
+        time.perf_counter() - stage_started,
+    )
+
+    stage_started = time.perf_counter()
+    LOGGER.info("Stage 10/11 start: agent reasoning")
     agent_result = run_agent(
         query="Which suppliers show abnormal financial behavior?",
         predictions=predictions_df.to_dict(orient="records"),
@@ -269,13 +306,13 @@ def run_pipeline() -> dict:
         network_risk=network_df.to_dict(orient="records"),
     )
     LOGGER.info(
-        "Stage 9/10 end: agent reasoning complete | alerts=%s duration_sec=%.3f",
+        "Stage 10/11 end: agent reasoning complete | alerts=%s duration_sec=%.3f",
         len(agent_result.get("alerts", [])),
         time.perf_counter() - stage_started,
     )
 
     stage_started = time.perf_counter()
-    LOGGER.info("Stage 10/10 start: persisting outputs")
+    LOGGER.info("Stage 11/11 start: persisting outputs")
     output_dir = root / "outputs"
     output_dir.mkdir(exist_ok=True)
     anomaly_scores_df.to_csv(output_dir / "anomaly_scores.csv", index=False)
@@ -329,7 +366,7 @@ def run_pipeline() -> dict:
         json.dump(network_payload, fh, indent=2)
 
     LOGGER.info(
-        "Stage 10/10 end: outputs persisted | output_dir=%s duration_sec=%.3f",
+        "Stage 11/11 end: outputs persisted | output_dir=%s duration_sec=%.3f",
         output_dir,
         time.perf_counter() - stage_started,
     )

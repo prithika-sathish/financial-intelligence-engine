@@ -4,27 +4,27 @@
     "count": 2356,
     "percentage": 0.44
   },
-  "average_risk_score": 0.439089,
+  "average_risk_score": 0.468268,
   "top_risky_companies": [
     {
       "company_id": "COMP-6",
-      "risk_score": 0.9999999878979092
+      "risk_score": 0.9999999800451492
     },
     {
       "company_id": "COMP-32",
-      "risk_score": 0.9362376733700416
-    },
-    {
-      "company_id": "COMP-49",
-      "risk_score": 0.8030598446931002
-    },
-    {
-      "company_id": "COMP-15",
-      "risk_score": 0.7756992850949064
+      "risk_score": 0.9519209469331243
     },
     {
       "company_id": "COMP-38",
-      "risk_score": 0.7645956611925414
+      "risk_score": 0.8789611569289105
+    },
+    {
+      "company_id": "COMP-49",
+      "risk_score": 0.827066670671391
+    },
+    {
+      "company_id": "COMP-0",
+      "risk_score": 0.7980576389404196
     }
   ]
 }
