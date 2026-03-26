@@ -1,7 +1,7 @@
 [
   {
     "company_id": "COMP-0",
-    "risk_score": 0.7446735990022676,
+    "risk_score": 0.7985447916931504,
     "risk_trend": "stable",
     "risk_velocity": 0.0,
     "top_risk_drivers": [
@@ -10,7 +10,7 @@
   },
   {
     "company_id": "COMP-1",
-    "risk_score": 0.27216803811063817,
+    "risk_score": 0.29508234157404595,
     "risk_trend": "stable",
     "risk_velocity": 0.0,
     "top_risk_drivers": [
@@ -19,7 +19,7 @@
   },
   {
     "company_id": "COMP-10",
-    "risk_score": 0.3766342216638627,
+    "risk_score": 0.4473935947537363,
     "risk_trend": "stable",
     "risk_velocity": 0.0,
     "top_risk_drivers": [
@@ -28,7 +28,7 @@
   },
   {
     "company_id": "COMP-11",
-    "risk_score": 0.6861190972737442,
+    "risk_score": 0.709712905597426,
     "risk_trend": "stable",
     "risk_velocity": 0.0,
     "top_risk_drivers": [
@@ -38,7 +38,7 @@
   },
   {
     "company_id": "COMP-12",
-    "risk_score": 0.6663116892154952,
+    "risk_score": 0.678799876509289,
     "risk_trend": "stable",
     "risk_velocity": 0.0,
     "top_risk_drivers": [
@@ -47,7 +47,7 @@
   },
   {
     "company_id": "COMP-13",
-    "risk_score": 0.5876527923534611,
+    "risk_score": 0.6096496348291144,
     "risk_trend": "stable",
     "risk_velocity": 0.0,
     "top_risk_drivers": [
@@ -56,7 +56,7 @@
   },
   {
     "company_id": "COMP-14",
-    "risk_score": 0.5393216580336619,
+    "risk_score": 0.5752046527435475,
     "risk_trend": "stable",
     "risk_velocity": 0.0,
     "top_risk_drivers": [
@@ -65,7 +65,7 @@
   },
   {
     "company_id": "COMP-15",
-    "risk_score": 0.7751041843523185,
+    "risk_score": 0.747264366996991,
     "risk_trend": "stable",
     "risk_velocity": 0.0,
     "top_risk_drivers": [
@@ -74,7 +74,7 @@
   },
   {
     "company_id": "COMP-16",
-    "risk_score": 0.23230317369465064,
+    "risk_score": 0.2577539184066834,
     "risk_trend": "stable",
     "risk_velocity": 0.0,
     "top_risk_drivers": [
@@ -84,7 +84,7 @@
   },
   {
     "company_id": "COMP-17",
-    "risk_score": 0.637649067188804,
+    "risk_score": 0.6972613316335387,
     "risk_trend": "stable",
     "risk_velocity": 0.0,
     "top_risk_drivers": [
@@ -93,7 +93,7 @@
   },
   {
     "company_id": "COMP-18",
-    "risk_score": 0.4972695090672883,
+    "risk_score": 0.5455356067941634,
     "risk_trend": "stable",
     "risk_velocity": 0.0,
     "top_risk_drivers": [
@@ -102,7 +102,7 @@
   },
   {
     "company_id": "COMP-19",
-    "risk_score": 0.4462223989833599,
+    "risk_score": 0.484136360079665,
     "risk_trend": "stable",
     "risk_velocity": 0.0,
     "top_risk_drivers": [
@@ -111,7 +111,7 @@
   },
   {
     "company_id": "COMP-2",
-    "risk_score": 0.4951722312953466,
+    "risk_score": 0.5387853721556143,
     "risk_trend": "stable",
     "risk_velocity": 0.0,
     "top_risk_drivers": [
@@ -120,7 +120,7 @@
   },
   {
     "company_id": "COMP-20",
-    "risk_score": 0.5127136159429825,
+    "risk_score": 0.49743735601521694,
     "risk_trend": "stable",
     "risk_velocity": 0.0,
     "top_risk_drivers": [
@@ -129,7 +129,7 @@
   },
   {
     "company_id": "COMP-21",
-    "risk_score": 0.040120999281747366,
+    "risk_score": 0.05567627619509061,
     "risk_trend": "stable",
     "risk_velocity": 0.0,
     "top_risk_drivers": [
@@ -138,7 +138,7 @@
   },
   {
     "company_id": "COMP-22",
-    "risk_score": 0.18321210232202256,
+    "risk_score": 0.23244592902112282,
     "risk_trend": "stable",
     "risk_velocity": 0.0,
     "top_risk_drivers": [
@@ -147,7 +147,7 @@
   },
   {
     "company_id": "COMP-23",
-    "risk_score": 0.6057648121672364,
+    "risk_score": 0.5865757591191185,
     "risk_trend": "stable",
     "risk_velocity": 0.0,
     "top_risk_drivers": [
@@ -156,7 +156,7 @@
   },
   {
     "company_id": "COMP-24",
-    "risk_score": 0.5533875591279206,
+    "risk_score": 0.567177876959816,
     "risk_trend": "stable",
     "risk_velocity": 0.0,
     "top_risk_drivers": [
@@ -165,7 +165,7 @@
   },
   {
     "company_id": "COMP-25",
-    "risk_score": 0.48181104601894365,
+    "risk_score": 0.5270687005017571,
     "risk_trend": "stable",
     "risk_velocity": 0.0,
     "top_risk_drivers": [
@@ -174,7 +174,7 @@
   },
   {
     "company_id": "COMP-26",
-    "risk_score": 0.13025983842719152,
+    "risk_score": 0.16943678896460274,
     "risk_trend": "stable",
     "risk_velocity": 0.0,
     "top_risk_drivers": [
@@ -183,7 +183,7 @@
   },
   {
     "company_id": "COMP-27",
-    "risk_score": 0.3199939927840959,
+    "risk_score": 0.34917955321399424,
     "risk_trend": "stable",
     "risk_velocity": 0.0,
     "top_risk_drivers": [
@@ -192,7 +192,7 @@
   },
   {
     "company_id": "COMP-28",
-    "risk_score": 0.2558685898261168,
+    "risk_score": 0.29136879798685167,
     "risk_trend": "stable",
     "risk_velocity": 0.0,
     "top_risk_drivers": [
@@ -202,7 +202,7 @@
   },
   {
     "company_id": "COMP-29",
-    "risk_score": 0.3819763278219096,
+    "risk_score": 0.3624339762965313,
     "risk_trend": "stable",
     "risk_velocity": 0.0,
     "top_risk_drivers": [
@@ -211,7 +211,7 @@
   },
   {
     "company_id": "COMP-3",
-    "risk_score": 0.6792626547944927,
+    "risk_score": 0.7493991917384127,
     "risk_trend": "stable",
     "risk_velocity": 0.0,
     "top_risk_drivers": [
@@ -220,7 +220,7 @@
   },
   {
     "company_id": "COMP-30",
-    "risk_score": 0.011815913318787194,
+    "risk_score": 0.024576551744143697,
     "risk_trend": "stable",
     "risk_velocity": 0.0,
     "top_risk_drivers": [
@@ -229,7 +229,7 @@
   },
   {
     "company_id": "COMP-31",
-    "risk_score": 0.2937998734473928,
+    "risk_score": 0.3556608351653058,
     "risk_trend": "stable",
     "risk_velocity": 0.0,
     "top_risk_drivers": [
@@ -238,7 +238,7 @@
   },
   {
     "company_id": "COMP-32",
-    "risk_score": 0.9356634543079544,
+    "risk_score": 0.9514588155874821,
     "risk_trend": "stable",
     "risk_velocity": 0.0,
     "top_risk_drivers": [
@@ -247,7 +247,7 @@
   },
   {
     "company_id": "COMP-33",
-    "risk_score": 0.28977550348768705,
+    "risk_score": 0.28905609019782996,
     "risk_trend": "stable",
     "risk_velocity": 0.0,
     "top_risk_drivers": [
@@ -256,7 +256,7 @@
   },
   {
     "company_id": "COMP-34",
-    "risk_score": 0.28325477537393584,
+    "risk_score": 0.30178274893421914,
     "risk_trend": "stable",
     "risk_velocity": 0.0,
     "top_risk_drivers": [
@@ -265,7 +265,7 @@
   },
   {
     "company_id": "COMP-35",
-    "risk_score": 0.13095016811931193,
+    "risk_score": 0.18330156949521528,
     "risk_trend": "stable",
     "risk_velocity": 0.0,
     "top_risk_drivers": [
@@ -274,7 +274,7 @@
   },
   {
     "company_id": "COMP-36",
-    "risk_score": 0.36663785442715224,
+    "risk_score": 0.452673386389175,
     "risk_trend": "stable",
     "risk_velocity": 0.0,
     "top_risk_drivers": [
@@ -283,7 +283,7 @@
   },
   {
     "company_id": "COMP-37",
-    "risk_score": 0.2112238199149672,
+    "risk_score": 0.21210837184743764,
     "risk_trend": "stable",
     "risk_velocity": 0.0,
     "top_risk_drivers": [
@@ -292,7 +292,7 @@
   },
   {
     "company_id": "COMP-38",
-    "risk_score": 0.7672459784584135,
+    "risk_score": 0.8827483164815507,
     "risk_trend": "stable",
     "risk_velocity": 0.0,
     "top_risk_drivers": [
@@ -301,7 +301,7 @@
   },
   {
     "company_id": "COMP-39",
-    "risk_score": 0.1969091831800414,
+    "risk_score": 0.24326362986380007,
     "risk_trend": "stable",
     "risk_velocity": 0.0,
     "top_risk_drivers": [
@@ -310,7 +310,7 @@
   },
   {
     "company_id": "COMP-4",
-    "risk_score": 0.44501456556541374,
+    "risk_score": 0.46466659690569556,
     "risk_trend": "stable",
     "risk_velocity": 0.0,
     "top_risk_drivers": [
@@ -319,7 +319,7 @@
   },
   {
     "company_id": "COMP-40",
-    "risk_score": 0.16976021641247452,
+    "risk_score": 0.17623560777708128,
     "risk_trend": "stable",
     "risk_velocity": 0.0,
     "top_risk_drivers": [
@@ -329,7 +329,7 @@
   },
   {
     "company_id": "COMP-41",
-    "risk_score": 0.4983115943846499,
+    "risk_score": 0.5226593091065318,
     "risk_trend": "stable",
     "risk_velocity": 0.0,
     "top_risk_drivers": [
@@ -338,7 +338,7 @@
   },
   {
     "company_id": "COMP-42",
-    "risk_score": 0.17117138975463705,
+    "risk_score": 0.22053985109785718,
     "risk_trend": "stable",
     "risk_velocity": 0.0,
     "top_risk_drivers": [
@@ -347,7 +347,7 @@
   },
   {
     "company_id": "COMP-43",
-    "risk_score": 0.41127373254970045,
+    "risk_score": 0.42216065352201104,
     "risk_trend": "stable",
     "risk_velocity": 0.0,
     "top_risk_drivers": [
@@ -356,7 +356,7 @@
   },
   {
     "company_id": "COMP-44",
-    "risk_score": 0.5008626301312313,
+    "risk_score": 0.5674302448405293,
     "risk_trend": "stable",
     "risk_velocity": 0.0,
     "top_risk_drivers": [
@@ -365,7 +365,7 @@
   },
   {
     "company_id": "COMP-45",
-    "risk_score": 0.14916445002424877,
+    "risk_score": 0.19218364926783046,
     "risk_trend": "stable",
     "risk_velocity": 0.0,
     "top_risk_drivers": [
@@ -374,7 +374,7 @@
   },
   {
     "company_id": "COMP-46",
-    "risk_score": 0.6610809771099995,
+    "risk_score": 0.6849506617099299,
     "risk_trend": "stable",
     "risk_velocity": 0.0,
     "top_risk_drivers": [
@@ -392,7 +392,7 @@
   },
   {
     "company_id": "COMP-48",
-    "risk_score": 0.5065682571124268,
+    "risk_score": 0.5154581607288267,
     "risk_trend": "stable",
     "risk_velocity": 0.0,
     "top_risk_drivers": [
@@ -401,7 +401,7 @@
   },
   {
     "company_id": "COMP-49",
-    "risk_score": 0.80258106997669,
+    "risk_score": 0.8267814849536986,
     "risk_trend": "stable",
     "risk_velocity": 0.0,
     "top_risk_drivers": [
@@ -411,7 +411,7 @@
   },
   {
     "company_id": "COMP-5",
-    "risk_score": 0.6122545577055092,
+    "risk_score": 0.6323644468872966,
     "risk_trend": "stable",
     "risk_velocity": 0.0,
     "top_risk_drivers": [
@@ -420,7 +420,7 @@
   },
   {
     "company_id": "COMP-6",
-    "risk_score": 0.99999999,
+    "risk_score": 0.9999999835035546,
     "risk_trend": "stable",
     "risk_velocity": 0.0,
     "top_risk_drivers": [
@@ -429,7 +429,7 @@
   },
   {
     "company_id": "COMP-7",
-    "risk_score": 0.25268257513873754,
+    "risk_score": 0.28823570086288874,
     "risk_trend": "stable",
     "risk_velocity": 0.0,
     "top_risk_drivers": [
@@ -438,7 +438,7 @@
   },
   {
     "company_id": "COMP-8",
-    "risk_score": 0.6013654692804902,
+    "risk_score": 0.625043158140851,
     "risk_trend": "stable",
     "risk_velocity": 0.0,
     "top_risk_drivers": [
@@ -448,7 +448,7 @@
   },
   {
     "company_id": "COMP-9",
-    "risk_score": 0.592700919297604,
+    "risk_score": 0.6265297072120555,
     "risk_trend": "stable",
     "risk_velocity": 0.0,
     "top_risk_drivers": [
