@@ -1,0 +1,9 @@
+{
+  "total_suppliers": 50,
+  "high_risk_count": 8,
+  "watchlist_count": 22,
+  "stable_count": 20,
+  "avg_risk_score": 0.46826821591370654,
+  "avg_criticality": 5.389101837197172,
+  "high_criticality_suppliers": 50
+}
